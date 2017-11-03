@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<block>
+  <name>SeqED_sup</name>
+  <key>detector_energy_SeqED_sup</key>
+  <category>detector_energy</category>
+  <import>import detector_energy</import>
+  <make>detector_energy.SeqED_sup($num_samples, $max_sense_slots, $limiar_baixo, $limiar_alto, $estimated_noise_power)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Número de Amostras</name>
+    <key>num_samples</key>
+    <type>float</type>
+  </param>
+
+  <param>
+    <name>Slot Máximo de Sensoriamento</name>
+    <key>max_sense_slots</key>
+    <type>float</type>
+  </param>
+
+  <param>
+    <name>Limiar Baixo</name>
+    <key>limiar_baixo</key>
+    <type>float</type>
+  </param>
+
+  <param>
+    <name>Limiar Alto</name>
+    <key>limiar_alto</key>
+    <type>float</type>
+  </param>
+
+  <param>
+    <name>Potência estimada de ruído</name>
+    <key>estimated_noise_power</key>
+    <type>float</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in</name>
+    <type>float</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out</name>
+    <type>float</type>
+  </source>
+  <source>
+    <name>out</name>
+    <type>float</type>
+  </source>
+</block>
