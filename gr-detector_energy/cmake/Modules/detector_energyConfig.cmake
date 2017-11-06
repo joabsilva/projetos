@@ -1,0 +1,30 @@
+INCLUDE(FindPkgConfig)
+PKG_CHECK_MODULES(PC_DETECTOR_ENERGY detector_energy)
+
+FIND_PATH(
+    DETECTOR_ENERGY_INCLUDE_DIRS
+    NAMES detector_energy/api.h
+    HINTS $ENV{DETECTOR_ENERGY_DIR}/include
+        ${PC_DETECTOR_ENERGY_INCLUDEDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/include
+          /usr/local/include
+          /usr/include
+)
+
+FIND_LIBRARY(
+    DETECTOR_ENERGY_LIBRARIES
+    NAMES gnuradio-detector_energy
+    HINTS $ENV{DETECTOR_ENERGY_DIR}/lib
+        ${PC_DETECTOR_ENERGY_LIBDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/lib
+          ${CMAKE_INSTALL_PREFIX}/lib64
+          /usr/local/lib
+          /usr/local/lib64
+          /usr/lib
+          /usr/lib64
+)
+
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(DETECTOR_ENERGY DEFAULT_MSG DETECTOR_ENERGY_LIBRARIES DETECTOR_ENERGY_INCLUDE_DIRS)
+MARK_AS_ADVANCED(DETECTOR_ENERGY_LIBRARIES DETECTOR_ENERGY_INCLUDE_DIRS)
+
