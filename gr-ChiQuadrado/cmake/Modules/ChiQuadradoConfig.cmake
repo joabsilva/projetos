@@ -1,0 +1,30 @@
+INCLUDE(FindPkgConfig)
+PKG_CHECK_MODULES(PC_CHIQUADRADO ChiQuadrado)
+
+FIND_PATH(
+    CHIQUADRADO_INCLUDE_DIRS
+    NAMES ChiQuadrado/api.h
+    HINTS $ENV{CHIQUADRADO_DIR}/include
+        ${PC_CHIQUADRADO_INCLUDEDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/include
+          /usr/local/include
+          /usr/include
+)
+
+FIND_LIBRARY(
+    CHIQUADRADO_LIBRARIES
+    NAMES gnuradio-ChiQuadrado
+    HINTS $ENV{CHIQUADRADO_DIR}/lib
+        ${PC_CHIQUADRADO_LIBDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/lib
+          ${CMAKE_INSTALL_PREFIX}/lib64
+          /usr/local/lib
+          /usr/local/lib64
+          /usr/lib
+          /usr/lib64
+)
+
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(CHIQUADRADO DEFAULT_MSG CHIQUADRADO_LIBRARIES CHIQUADRADO_INCLUDE_DIRS)
+MARK_AS_ADVANCED(CHIQUADRADO_LIBRARIES CHIQUADRADO_INCLUDE_DIRS)
+

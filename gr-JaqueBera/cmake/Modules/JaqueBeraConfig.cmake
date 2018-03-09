@@ -1,0 +1,30 @@
+INCLUDE(FindPkgConfig)
+PKG_CHECK_MODULES(PC_JAQUEBERA JaqueBera)
+
+FIND_PATH(
+    JAQUEBERA_INCLUDE_DIRS
+    NAMES JaqueBera/api.h
+    HINTS $ENV{JAQUEBERA_DIR}/include
+        ${PC_JAQUEBERA_INCLUDEDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/include
+          /usr/local/include
+          /usr/include
+)
+
+FIND_LIBRARY(
+    JAQUEBERA_LIBRARIES
+    NAMES gnuradio-JaqueBera
+    HINTS $ENV{JAQUEBERA_DIR}/lib
+        ${PC_JAQUEBERA_LIBDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/lib
+          ${CMAKE_INSTALL_PREFIX}/lib64
+          /usr/local/lib
+          /usr/local/lib64
+          /usr/lib
+          /usr/lib64
+)
+
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(JAQUEBERA DEFAULT_MSG JAQUEBERA_LIBRARIES JAQUEBERA_INCLUDE_DIRS)
+MARK_AS_ADVANCED(JAQUEBERA_LIBRARIES JAQUEBERA_INCLUDE_DIRS)
+
