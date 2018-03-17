@@ -1,0 +1,21 @@
+## Customizing test machine
+## Deploys at AWS CodeDeploy
+
+machine:
+  node:
+    version: 6.9.1
+
+deployment:
+  staging:
+    branch: BRANCH_NAME
+    codedeploy:
+      APPNAME:
+        deployment_group: DEPLOYMENT_GROUP_NAME
+        application_root: /
+        revision_location:
+          revision_type: S3
+          s3_location:
+            bucket: BUCKET_NAME
+            key_pattern: APP_NAME-{SHORT_COMMIT}-{BUILD_NUM}
+        region: us-east-1
+        deployment_config: CodeDeployDefault.AllAtOnce
