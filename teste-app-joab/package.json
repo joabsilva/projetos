@@ -28,7 +28,7 @@
   ],
   "devDependencies": {
     "del": "^1.1.1",
-    "eslint": "^2.13.0",
+    "eslint": "^6.5.1",
     "gulp": "^3.8.11",
     "gulp-clean-css": "^2.0.4",
     "gulp-concat": "^2.5.2",
